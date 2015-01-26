@@ -1,0 +1,24 @@
+{
+  "name": "exporter",
+  "version": "1.0.0",
+  "main": "app.js",
+  "dependencies": {
+    "kue": "^0.8.11",
+    "request": "^2.51.0",
+    "underscore": "^1.7.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mcotton/exporter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mcotton/exporter/issues"
+  },
+  "homepage": "https://github.com/mcotton/exporter"
+}

@@ -1,0 +1,6 @@
+*.swp
+*.rdb
+node_modules
+*.flv
+config.js
+
