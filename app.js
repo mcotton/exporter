@@ -7,17 +7,21 @@ var kue = require('kue'),
 
 
 startUp = function(body) {
-    videoList = een.getVideoList({'c': config.camera, 'start': '20150123000000.000', 'end': '20150125000000.000' }, processVideoList)
+    een.getVideoList({'c': config.camera, 'start': '20150120000000.000', 'end': '20150126000000.000' }, processVideoList)
 }
 
-processVideoList = function(res) {
-    console.log('running processVideoList')
-    console.log(res.response.body)
+processVideoList = function(res, body) {
+    //console.log('running processVideoList')
+    //console.log('dumping body object')
+    //console.log(body)
+    //console.log('status code: ' + res.statusCode)
     try {
-        if(res.response.body) {
-            console.log('about to parse videoList')
-            var videos = JSON.parse(res.response.body)
-
+        if(body) {
+            //console.log('about to parse videoList')
+            var videos = JSON.parse(body)
+            //console.log('dumping videos object')
+            //console.log(videos)
+            //console.log('start creating jobs from videoList')
             u.each(videos, function(item, count) {
                 var job = jobs.create('download', {
                         's': item.s,
@@ -39,12 +43,16 @@ processVideoList = function(res) {
                     process.stdout.write('\r  job #' + job.id + ' ' + progress + '% complete');
                 })
             })
+            
+            // start processing the job queue, five at a time
+            jobs.process('download', 5, worker)
+
         } else {
             console.error('videoList is not an object, quiting')
         }
     } catch(e) {
         console.log('failed to parse videoList')
-        //process.exit()
+        process.exit()
     }
 }
 

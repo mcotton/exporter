@@ -165,7 +165,12 @@ exports.getVideoList = function(opts, success, failure) {
                 function (err, res, body) {
                     if (err) { return err }
                     if (!err && res.statusCode == 200) {
-                        if(success) success(res) 
+                        //console.log('Dumping output from getVideoList before calling success')
+                        //console.log(body)
+                        //console.log(res.statusCode)
+                        if(success) {
+                            success(res, body) 
+                        }
                     }
                     return res
                 }
