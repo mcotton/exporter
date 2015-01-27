@@ -7,21 +7,13 @@ var kue = require('kue'),
 
 
 startUp = function(body) {
-    een.getVideoList({'c': config.camera, 'start': '20150120000000.000', 'end': '20150126000000.000' }, processVideoList)
+    een.getVideoList({'c': config.camera, 'start': config.start_time, 'end': config.end_time }, processVideoList)
 }
 
 processVideoList = function(res, body) {
-    //console.log('running processVideoList')
-    //console.log('dumping body object')
-    //console.log(body)
-    //console.log('status code: ' + res.statusCode)
     try {
         if(body) {
-            //console.log('about to parse videoList')
             var videos = JSON.parse(body)
-            //console.log('dumping videos object')
-            //console.log(videos)
-            //console.log('start creating jobs from videoList')
             u.each(videos, function(item, count) {
                 var job = jobs.create('download', {
                         's': item.s,
@@ -66,7 +58,7 @@ worker = function(job, done) {
                     '"https://login.eagleeyenetworks.com/asset/play/video.flv?id=', config.camera,
                     '&start_timestamp=', job.data.s,
                     '&end_timestamp=', job.data.e,
-                    '&" > ',
+                    '" > ',
                     job.data.s, '.flv'
                    ].join('')
     var child = exec(curl_cmd, function (error, stdout, stderr) {
