@@ -9,6 +9,9 @@ Install [Node.js](https://github.com/joyent/node.git) or [io.js](https://iojs.or
     npm install
 
 #### Step Three ####
+Start redis, by default it connects to a local instance on the default ports
+
+#### Step Four ####
 Make a config file
 
     module.exports = {
@@ -20,4 +23,7 @@ Make a config file
         'start_time' :  '20150120000000.000',
         'end_time'   :  '20150126000000.000'
     }
+
+#### Step Five ####
+    node app.js
 
