@@ -52,7 +52,7 @@ processVideoList = function(res, body) {
 worker = function(job, done) {
     console.log('job id: ' + job.id + ' is doing work');
     var curl_cmd = ['curl', ' ',
-                    '--cookie', ' ',
+                    '--progress-bar', ' ', '--cookie', ' ',
                    '"videobank_sessionid=',
                     /videobank_sessionid=(\w*);/.exec(een.cookie_jar._jar.store.idx['eagleeyenetworks.com']['/']['videobank_sessionid'])[1], '" ',
                     '"https://login.eagleeyenetworks.com/asset/play/video.flv?id=', config.camera,

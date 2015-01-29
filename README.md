@@ -17,7 +17,7 @@ Make a config file
     module.exports = {
         'username'   :  '',
         'password'   :  '',
-        'camera'     :  ''
+        'camera'     :  '',
         // start and end time in EEN format
         // YYYYMMDDHHMMSS.sss
         'start_time' :  '20150120000000.000',
